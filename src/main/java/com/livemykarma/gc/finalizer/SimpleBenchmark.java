@@ -39,12 +39,9 @@ import org.openjdk.jmh.annotations.Fork;
 import org.openjdk.jmh.annotations.Measurement;
 import org.openjdk.jmh.annotations.Mode;
 import org.openjdk.jmh.annotations.OutputTimeUnit;
-import org.openjdk.jmh.annotations.Param;
 import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.State;
 import org.openjdk.jmh.annotations.Warmup;
-import org.openjdk.jmh.infra.Blackhole;
-import org.openjdk.jmh.profile.GCProfiler;
 import org.openjdk.jmh.runner.Runner;
 import org.openjdk.jmh.runner.RunnerException;
 import org.openjdk.jmh.runner.options.Options;
@@ -56,27 +53,20 @@ import org.openjdk.jmh.runner.options.OptionsBuilder;
 @Warmup(iterations = 5, time = 100, timeUnit = TimeUnit.MILLISECONDS)
 @Measurement(iterations = 5, time = 100, timeUnit = TimeUnit.MILLISECONDS)
 @Fork(50)
-public class MyBenchmark {
-	@Param({ "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18",
-			"19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36",
-			"37", "38", "39", "40" })
-	private int tokens;
+public class SimpleBenchmark {
 
 	@Benchmark
 	public FinalizableClass testFinalizable() {
-		 Blackhole.consumeCPU(tokens);
 		 return new FinalizableClass();
 	}
 	
 	@Benchmark
 	public NonFinalizableClass testNonFinalizable() {
-		 Blackhole.consumeCPU(tokens);
 		 return new NonFinalizableClass();
 	}
 	public static void main(String[] args) throws RunnerException {
         Options opt = new OptionsBuilder()
-                .include(MyBenchmark.class.getSimpleName())
-                .addProfiler(GCProfiler.class)
+                .include(SimpleBenchmark.class.getSimpleName())
                 .forks(50)
                 .build();
 
