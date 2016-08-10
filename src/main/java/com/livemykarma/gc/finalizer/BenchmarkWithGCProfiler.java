@@ -24,28 +24,30 @@ import org.openjdk.jmh.runner.options.OptionsBuilder;
 @State(Scope.Thread)
 @Warmup(iterations = 5, time = 100, timeUnit = TimeUnit.MILLISECONDS)
 @Measurement(iterations = 5, time = 100, timeUnit = TimeUnit.MILLISECONDS)
-@Fork(50)
+@Fork(4)
 public class BenchmarkWithGCProfiler {
 	@Param({ "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", 
 			"11", "12", "13", "14", "15", "16", "17", "18", "19", "20"})
 	private int tokens;
 
-	@Benchmark
-	public FinalizableClass testFinalizable() {
-		 Blackhole.consumeCPU(tokens);
-		 return new FinalizableClass();
-	}
 	
 	@Benchmark
 	public NonFinalizableClass testNonFinalizable() {
 		 Blackhole.consumeCPU(tokens);
 		 return new NonFinalizableClass();
 	}
+	
+	@Benchmark
+	public FinalizableClass testFinalizable() {
+		 Blackhole.consumeCPU(tokens);
+		 return new FinalizableClass();
+	}
+	
 	public static void main(String[] args) throws RunnerException {
         Options opt = new OptionsBuilder()
                 .include(BenchmarkWithGCProfiler.class.getSimpleName())
                 .addProfiler(GCProfiler.class)
-                .forks(50)
+                .threads(50)
                 .build();
 
         new Runner(opt).run();

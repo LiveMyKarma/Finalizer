@@ -21,22 +21,24 @@ import org.openjdk.jmh.runner.options.OptionsBuilder;
 @State(Scope.Thread)
 @Warmup(iterations = 5, time = 100, timeUnit = TimeUnit.MILLISECONDS)
 @Measurement(iterations = 5, time = 100, timeUnit = TimeUnit.MILLISECONDS)
-@Fork(50)
+@Fork(4)
 public class SimpleBenchmark {
+
+	@Benchmark
+	public NonFinalizableClass testNonFinalizable() {
+		 return new NonFinalizableClass();
+	}
 
 	@Benchmark
 	public FinalizableClass testFinalizable() {
 		 return new FinalizableClass();
 	}
 	
-	@Benchmark
-	public NonFinalizableClass testNonFinalizable() {
-		 return new NonFinalizableClass();
-	}
 	public static void main(String[] args) throws RunnerException {
         Options opt = new OptionsBuilder()
                 .include(SimpleBenchmark.class.getSimpleName())
-                .forks(50)
+                .forks(4)
+                .threads(40)
                 .build();
 
         new Runner(opt).run();
