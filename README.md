@@ -1,7 +1,8 @@
 # Finalizer
 Demonstrate overhead of finalizers in Java
 
-Tio build the project run following command from project root:
+To build the project run following command from project root:
+
 mvn clean install 
 
 There are 2 main Classes 
