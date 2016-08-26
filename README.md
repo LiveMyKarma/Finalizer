@@ -1,6 +1,9 @@
 # Finalizer
 Demonstrate overhead of finalizers in Java
 
+Tio build the project run following command from project root:
+mvn clean install 
+
 There are 2 main Classes 
 
 [SimpleBenchmark.java](src/main/java/com/livemykarma/gc/finalizer/SimpleBenchmark.java) which is a simple example creating finalizable classes. This is to demonstrate worse case scenario.
