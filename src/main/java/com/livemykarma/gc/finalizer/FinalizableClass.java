@@ -1,12 +1,14 @@
 package com.livemykarma.gc.finalizer;
 
+import java.io.InputStream;
+
 public class FinalizableClass {
-	int counter = 100;
-	String message = "Testing...";
+	String message;
+	InputStream stream;
 	
 	@Override
 	protected void finalize() throws Throwable {
-		counter = 0;
-		message = null;
+		stream.close(); //This can be avoided by restructuring your class, 
+						//or utilizing object life cycle methods 
 	}
 }

@@ -21,9 +21,9 @@ import org.openjdk.jmh.runner.options.OptionsBuilder;
 
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
-@State(Scope.Thread)
-@Warmup(iterations = 5, time = 100, timeUnit = TimeUnit.MILLISECONDS)
-@Measurement(iterations = 5, time = 100, timeUnit = TimeUnit.MILLISECONDS)
+@State(Scope.Benchmark)
+@Warmup(iterations = 10, time = 100, timeUnit = TimeUnit.MILLISECONDS)
+@Measurement(iterations = 50, time = 100, timeUnit = TimeUnit.MILLISECONDS)
 @Fork(4)
 public class BenchmarkWithGCProfiler {
 	@Param({ "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", 
@@ -47,7 +47,7 @@ public class BenchmarkWithGCProfiler {
         Options opt = new OptionsBuilder()
                 .include(BenchmarkWithGCProfiler.class.getSimpleName())
                 .addProfiler(GCProfiler.class)
-                .threads(50)
+                .threads(4)
                 .build();
 
         new Runner(opt).run();
