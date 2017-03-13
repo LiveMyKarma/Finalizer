@@ -2,6 +2,12 @@ package com.livemykarma.gc.finalizer;
 
 import org.openjdk.jmh.runner.RunnerException;
 
+/**
+ * Simple benchmark class without using any benchmarking framework
+ * 
+ * @author Gautam
+ *
+ */
 public class SimpleBenchmark {
 
 	public long benchMarkNonFinalizable() {

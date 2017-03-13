@@ -5,6 +5,12 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 
+/**
+ * Problem class
+ * 
+ * @author Gautam
+ *
+ */
 public class OutputStreamWrapper {
 	private OutputStream stream;
 
@@ -15,9 +21,9 @@ public class OutputStreamWrapper {
 		}
 	}
 	
-	public void write() throws IOException {
-		this.stream.flush();
-		this.stream.close();
+	public void write(byte[] bytes) throws IOException {
+		stream.flush();
+		stream.write(bytes);
 	}
 
 	@Override
