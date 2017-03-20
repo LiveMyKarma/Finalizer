@@ -29,5 +29,6 @@ public class OutputStreamWrapper {
 	@Override
 	protected void finalize() throws Throwable {
 		stream.close();
+		//If exception is raised, any code after this will be ignored 
 	}
 }
