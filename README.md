@@ -15,7 +15,7 @@ There are 2 main Classes
 
 [BenchmarkWithGCProfiler.java](src/main/java/com/livemykarma/gc/finalizer/BenchmarkWithGCProfiler.java) which is a more detailed example creating finalizable classes with added CPU instruction cycle to demonstrate the real world scenario.
 
-##Benchmark Result
+## Benchmark Result
 
 Environment: 
 
